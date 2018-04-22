@@ -2,9 +2,8 @@
     
     varying vec3 normal;
 	varying vec3 wNormal;
-    varying vec3 lightDir;
+    varying vec3 lightDir[3];
 
-    uniform vec3 _LightPos;
     uniform vec3 _CameraPos;
     
     varying vec3 viewDir;

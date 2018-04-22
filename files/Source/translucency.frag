@@ -6,10 +6,9 @@
     uniform float thicknessDistortion;
     uniform float thicknessAmbient;
 	
-	vec3 translucency( sampler2D tex, vec2 vUv, vec3 N, vec3 V, vec3 vLightDir )
+	vec3 translucency( sampler2D tex, vec3 thicknessColor, vec2 vUv, vec3 N, vec3 V, vec3 vLightDir, vec3 lCol )
     {             
         // accumulo
-        vec3 thicknessColor = vec3(1.,1.,1.);
         float thicknessCutoff = 0.75;
         float thicknessDecay = 1.;        
                 
@@ -30,7 +29,7 @@
         float LTDot = pow(clamp(dot(V, -LTLight),0.,1.), thicknessPower) * thicknessScale;
 		
         vec3 LT = lightAtten * (LTDot + thicknessAmbient) * thickness;
-        vec3 reflectedLightDirectDiffuse = _TranslucentColor * _PointLightColor *LT;
+        vec3 reflectedLightDirectDiffuse = _TranslucentColor*lCol *LT;
         
         return reflectedLightDirectDiffuse;        
     }    

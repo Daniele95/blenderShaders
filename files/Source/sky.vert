@@ -1,5 +1,6 @@
 		uniform mat4 _ModelMatrix;
-
+		uniform mat4 _RotMatrix;
+		
 		uniform vec3 sunPosition;
 		uniform float rayleigh;
 		uniform float turbidity;
@@ -49,7 +50,7 @@
 
 		void main() {
 
-			vWorldPosition = vec3(_ModelMatrix * gl_Vertex);
+			vWorldPosition = vec3(_RotMatrix *_ModelMatrix * gl_Vertex);
 
 			gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
 			gl_Position.z = gl_Position.w; // set z to camera.far
